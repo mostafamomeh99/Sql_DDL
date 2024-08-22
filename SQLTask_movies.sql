@@ -1,0 +1,97 @@
+--create database Movies
+--use  Movies
+--create schema movies
+
+--//////actors table
+--create table movies. actors(
+--act_id int primary key,
+--act_fname varchar(20),
+--act_lname varchar(20),
+--act_gender varchar(1)
+--)
+
+--//////directors table
+--create table movies. directors(
+--dir_id int primary key,
+--dir_fname varchar(20),
+--dir_lname varchar(20),
+--)
+
+--///////////movie table
+--create table movies. moviestable(
+--mov_id int primary key,
+--mov_title varchar(50),
+--mov_year int,
+--mov_time int,
+--mov_lang varchar(50),
+--mov_dt_rel date,
+--mov_rel_country varchar(5),
+--)
+
+--///////movie_direction table
+--create table movies. movie_directions(
+--mov_id int ,
+--dir_id int,
+--primary key(mov_id,dir_id) ,
+--constraint mov_dirfordir foreign key(dir_id) REFERENCES movies. directors(dir_id)
+--on delete cascade
+--on update cascade,
+--constraint mov_dirformov foreign key(mov_id) REFERENCES movies. moviestable(mov_id)
+--on delete cascade
+--on update cascade
+--)
+
+--/////////movie_cast table
+--create table movies. movie_casts(
+--role varchar(30) ,
+--act_id int,
+--mov_id int,
+--primary key(act_id ,mov_id),
+--constraint movie_castforact foreign key (act_id) REFERENCES movies. actors(act_id)
+--on delete CASCADE
+--on update CASCADE,
+--constraint movie_castformov foreign key (mov_id) REFERENCES movies. moviestable(mov_id)
+--on delete CASCADE
+--on update CASCADE
+--)
+
+--/////////genres table
+-- create table movies. genres(
+--gen_id int primary key,
+--gen_title varchar(20),
+--)
+
+--/////////movie_genres table
+-- create table movies. movie_genres(
+--gen_id int ,
+--mov_id  int,
+--primary key (gen_id ,mov_id ),
+--constraint movie_genresfor_mov foreign key(mov_id) REFERENCES movies. moviestable(mov_id)
+--on delete cascade
+--on update cascade,
+--constraint movie_genresfor_gen foreign key(gen_id) REFERENCES movies. genres(gen_id)
+--on delete cascade
+--on update cascade
+--)
+
+--/////////reviewers table
+-- create table movies. reviewers(
+--rev_id int ,
+--mov_name  varchar(30),
+--primary key (rev_id)
+--)
+
+--/////////ratings table
+-- create table movies. ratings(
+--rev_id int ,
+--mov_id  int,
+--rev_stars  int,
+--num_o_ratings int,
+--primary key (rev_id ,mov_id ),
+--constraint ratingsfor_mov foreign key(mov_id) REFERENCES movies. moviestable(mov_id)
+--on delete cascade
+--on update cascade,
+--constraint ratingsfor_rev foreign key(rev_id) REFERENCES movies. reviewers(rev_id)
+--on delete cascade
+--on update cascade
+--)
